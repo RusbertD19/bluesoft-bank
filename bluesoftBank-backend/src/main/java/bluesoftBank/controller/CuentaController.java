@@ -1,18 +1,11 @@
 package bluesoftBank.controller;
 
-import bluesoftBank.dto.TransaccionResponseDTO;
 import bluesoftBank.entity.Transaccion;
 import bluesoftBank.service.CuentaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cuentas")
