@@ -1,0 +1,49 @@
+<h2>Reporte: Clientes con más transacciones</h2>
+<label>Mes:</label>
+<input type="number" [(ngModel)]="mes" min="1" max="12" />
+<label>Año:</label>
+<input type="number" [(ngModel)]="anio" />
+<button (click)="generarReporteTransacciones()">Generar Reporte</button>
+
+<table *ngIf="transaccionesMes.length > 0">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Número de transacciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of transaccionesMes">
+      <td>{{ item[0] }}</td>
+      <td>{{ item[1] }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2>Reporte: Clientes con retiros fuera de la ciudad</h2>
+<label>Mes:</label>
+<input type="number" [(ngModel)]="mesRetiros" min="1" max="12" />
+<label>Año:</label>
+<input type="number" [(ngModel)]="anioRetiros" />
+<button (click)="generarReporteRetiros()">Generar Reporte</button>
+
+<table *ngIf="retirosFueraCiudad.length > 0">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Total Retirado</th>
+      <th>Ciudad Origen</th>
+      <th>Ciudad Transacción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of retirosFueraCiudad">
+      <td>{{ item[0] }}</td>
+      <td>{{ item[1] | currency:'COP' }}</td>
+      <td>{{ item[2] }}</td>
+      <td>{{ item[3] }}</td>
+    </tr>
+  </tbody>
+</table>

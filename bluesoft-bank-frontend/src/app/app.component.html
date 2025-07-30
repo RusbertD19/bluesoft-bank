@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <img src="assets/img/logo.png" alt="Logo" style="height: 40px; width: 120px; margin-right: 12px;">
+  <nav>
+    <a mat-button routerLink="/inicio">Inicio</a>
+    <a mat-button routerLink="/consultar-saldo">Mis Cuentas</a>
+    <a mat-button routerLink="/transacciones">Transacciones</a>
+
+    <!-- Menú desplegable para Reportes -->
+    <button mat-button [matMenuTriggerFor]="reportesMenu">Reportes</button>
+    <mat-menu #reportesMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/extracto'">Extracto</button>
+      <button mat-menu-item [routerLink]="'/reporte'">Reportes</button>
+      <!-- Agrega más opciones aquí -->
+    </mat-menu>
+  </nav>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

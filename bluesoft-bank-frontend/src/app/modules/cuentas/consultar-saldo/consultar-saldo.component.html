@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Consultar Saldo</h2>
+
+  <form [formGroup]="consultaForm" (ngSubmit)="consultarSaldo()">
+    <mat-form-field appearance="outline">
+      <mat-label>Número de Cuenta</mat-label>
+      <input matInput formControlName="numeroCuenta" placeholder="Ej: 12345678">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="cargando || !consultaForm.valid">
+      Consultar
+    </button>
+  </form>
+
+  <mat-progress-spinner *ngIf="cargando" mode="indeterminate" diameter="30"></mat-progress-spinner>
+
+  <div *ngIf="error" class="error">
+    <mat-icon color="warn">error</mat-icon> {{ error }}
+  </div>
+
+  <div *ngIf="saldo !== null" class="resultado">
+    <h3>Saldo actual: {{ saldo | currency:'COP':'symbol':'1.0-0' }}</h3>
+
+    <div *ngIf="cuentaInfo" class="cuenta-info">
+      <p><strong>Número de cuenta:</strong> {{ cuentaInfo.numero }}</p>
+      <p><strong>Tipo de cuenta:</strong> {{ cuentaInfo.tipo }}</p>
+    </div>
+
+    <div *ngIf="transacciones.length > 0">
+      <h3>Últimos Movimientos</h3>
+
+      <table mat-table [dataSource]="transacciones" class="mat-elevation-z8">
+
+        <!-- Fecha Column -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let trans"> {{ trans.fecha | date:'short' }} </td>
+        </ng-container>
+
+        <!-- Tipo Column -->
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let trans"> {{ trans.tipo }} </td>
+        </ng-container>
+
+        <!-- Valor Column -->
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let trans"> {{ trans.valor | currency:'COP' }} </td>
+        </ng-container>
+
+        <!-- Ciudad Column -->
+        <ng-container matColumnDef="ciudad">
+          <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+          <td mat-cell *matCellDef="let trans"> {{ trans.ciudadTransaccion }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['fecha', 'tipo', 'valor', 'ciudad']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['fecha', 'tipo', 'valor', 'ciudad']"></tr>
+      </table>
+    </div>
+  </div>
+</div>

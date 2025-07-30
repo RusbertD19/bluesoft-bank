@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Generar Extracto Mensual</h2>
+
+  <form (ngSubmit)="generarExtracto()" #extractoForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Número de Cuenta</mat-label>
+      <input matInput name="numeroCuenta" [(ngModel)]="numeroCuenta" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mes</mat-label>
+      <mat-select name="mes" [(ngModel)]="mes" required>
+        <mat-option *ngFor="let m of meses" [value]="m.valor">{{ m.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Año</mat-label>
+      <input matInput type="number" name="anio" [(ngModel)]="anio" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Descargar PDF</button>
+  </form>
+</div>

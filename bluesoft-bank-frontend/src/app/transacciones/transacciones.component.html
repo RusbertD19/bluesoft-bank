@@ -1,0 +1,40 @@
+<div class="transacciones-container">
+  <h2>Operaciones de Cuenta</h2>
+
+  <form (ngSubmit)="realizarTransaccion()" #transForm="ngForm" class="trans-form">
+    <div class="form-group">
+      <label for="numeroCuenta">Número de Cuenta:</label>
+      <input type="text" id="numeroCuenta" name="numeroCuenta" [(ngModel)]="numeroCuenta" required />
+    </div>
+
+    <div class="form-group">
+      <label for="tipoTransaccion">Tipo de Transacción:</label>
+      <select id="tipoTransaccion" name="tipoTransaccion" [(ngModel)]="tipoTransaccion" required>
+        <option value="CONSIGNACION">Consignación</option>
+        <option value="RETIRO">Retiro</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="valor">Valor:</label>
+      <input type="number" id="valor" name="valor" [(ngModel)]="valor" required />
+    </div>
+
+    <div class="form-group">
+      <label for="ciudad">Ciudad:</label>
+      <input type="text" id="ciudad" name="ciudad" [(ngModel)]="ciudad" required />
+    </div>
+
+    <button type="submit" [disabled]="transForm.invalid" class="submit-btn">
+      Realizar Transacción
+    </button>
+  </form>
+
+  <div *ngIf="mensaje" class="mensaje mensaje-exito">
+    {{ mensaje }}
+  </div>
+
+  <div *ngIf="error" class="mensaje mensaje-error">
+    {{ error }}
+  </div>
+</div>
