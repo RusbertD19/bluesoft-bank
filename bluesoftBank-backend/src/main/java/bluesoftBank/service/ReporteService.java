@@ -15,7 +15,8 @@ public class ReporteService {
         return transaccionRepository.findClientesConMasTransacciones(mes, anio);
     }
 
-    public List<Object[]> clientesConRetirosFueraCiudad(Double montoMinimo) {
-        return transaccionRepository.findClientesConRetirosFueraCiudad(montoMinimo);
+    public List<Object[]> clientesConRetirosFueraCiudad(int mes, int anio, Double montoMinimo) {
+        return transaccionRepository.findClientesConRetirosFueraCiudad(mes, anio, montoMinimo);
     }
+
 }

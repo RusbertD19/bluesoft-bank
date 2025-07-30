@@ -41,9 +41,13 @@ public interface TransaccionRepository extends JpaRepository<Transaccion, Long> 
     @Query("SELECT c.nombre, SUM(t.valor) as totalRetirado, c.ciudadOrigen, t.ciudadTransaccion " +
             "FROM Transaccion t JOIN t.cuenta cu JOIN cu.cliente c " +
             "WHERE t.tipo = 'RETIRO' AND t.ciudadTransaccion <> c.ciudadOrigen " +
+            "AND MONTH(t.fecha) = :mes AND YEAR(t.fecha) = :anio " +
             "GROUP BY c.id, c.nombre, c.ciudadOrigen, t.ciudadTransaccion " +
             "HAVING SUM(t.valor) > :montoMinimo " +
             "ORDER BY totalRetirado DESC")
     List<Object[]> findClientesConRetirosFueraCiudad(
+            @Param("mes") int mes,
+            @Param("anio") int anio,
             @Param("montoMinimo") Double montoMinimo);
+
 }

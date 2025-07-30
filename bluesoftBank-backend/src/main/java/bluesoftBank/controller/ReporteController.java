@@ -25,7 +25,10 @@ public class ReporteController {
 
     @GetMapping("/retiros-fuera-ciudad")
     public ResponseEntity<List<Object[]>> clientesConRetirosFueraCiudad(
+            @RequestParam int mes,
+            @RequestParam int anio,
             @RequestParam(defaultValue = "1000000") Double montoMinimo) {
-        return ResponseEntity.ok(reporteService.clientesConRetirosFueraCiudad(montoMinimo));
+        return ResponseEntity.ok(reporteService.clientesConRetirosFueraCiudad(mes, anio, montoMinimo));
     }
+
 }

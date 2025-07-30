@@ -65,4 +65,5 @@ public class CuentaService {
     public List<Transaccion> obtenerUltimasTransacciones(String numeroCuenta, int cantidad) {
         return transaccionRepository.findTopByCuentaNumeroOrderByFechaDesc(numeroCuenta, cantidad);
     }
+
 }
